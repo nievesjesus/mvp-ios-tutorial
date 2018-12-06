@@ -98,7 +98,8 @@ struct PagedUsers: Codable {
 }
 ```
 
-### Service
+## Service
+
 En esta carpeta vamos a crear nuestros servicios, pero primero necesitamos crear una clase base para ser reutilizada en todos nuestros servicios, la llamaremos BaseService
 
 Este tutorial es orientado únicamente al MVP, de momento no vamos a ver nada relacionado con capas de abstracción de red ni métodos de consultas a las apis, usaremos una clase para el manejo de los request (service/Networking/NetworkLayer.swift) la cual maneja las consultas y las respuestas de una api (en otro tutorial explicaremos a detalle esta clase):
@@ -197,7 +198,7 @@ extension ViewController: UITableViewDataSource {
 
 }
 
-// Hacemos implementación de las funciones de UserView que son llamadas desde el presenter y enviar datos hasta el controlador actual.
+// Hacemos implementacion de las funciones de UserView que son llamadas desde el presenter y envian datos hasta el controlador actual.
 extension ViewController: UsersView {
 
     func startLoading() {
