@@ -132,6 +132,41 @@ Necesitamos iniciar UsersService y UsersView, también debemos definir getUsersL
 
 Ya en este paso tenemos toda la estructura de MVP armada, ahora solo nos queda crear algunos elementos gráficos para mostrar y un loading.
 
+```swift
+import Foundation
+
+class UsersPresenter: NSObject {
+
+    private let getUserService: GetUsers
+    weak private var usersView: UsersView?
+
+    init(getUserService: GetUsers) {
+        self.getUserService = getUserService
+    }
+
+    func attachView(view: UsersView) {
+        self.usersView = view
+    }
+
+    func detachView() {
+        usersView = nil
+    }
+    
+    func getUsersList() {
+        usersView?.startLoading()
+        getUserService.execute(
+            onSuccess: { (pagedUsers: PagedUsers) in
+                self.usersView?.stopLoading()
+                self.usersView?.showData(pagedUsers.data)
+            },
+            onError: { (error: Error) in
+               print(error)
+            }
+        )
+    }
+
+}
+```
 
 ## ViewController
 
